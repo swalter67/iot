@@ -12,11 +12,10 @@ WORKER_NODE_NAME = 'swalterSW'
 WORKER_NODE_IP = '192.168.42.111'
 
 # common config
+# centos ou ubuntu/bionic64 ou hashicorp/bionic64
 MEM = 1024
 CPU = 1
-BOX = "centos/8"
-BOX_URL = "https://app.vagrantup.com/centos/boxes/8/versions/2011.0/providers/virtualbox.box"
-BOX_AUTO_UPDATE = false
+BOX = "ubuntu/bionic64"
 
 # disable firewall so we can have direct ssh access without need to copy our ssh public key to the machine 
 # !!! (NOT RECOMMENDED , USE THE SSH KEYS METHOD IN PRODUCTION ENV, THIS IS ONLY FOR SCHOOL PRACTICING PURPOSE ) !!!
@@ -28,7 +27,7 @@ SHELL
 Vagrant.configure("2") do |config|
 	config.vm.box = BOX
 	config.vm.box_url = BOX_URL
-	config.vm.box_check_update = BOX_AUTO_UPDATE
+	
 	config.vbguest.installer_options = { allow_kernel_upgrade: true }
 	config.vm.provision "shell", inline: $DISABLE_FIREWALL_SCRIPT 
 
