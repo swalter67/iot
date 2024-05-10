@@ -1,14 +1,17 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "bento/centos-stream-8"
+    config.vm.box = "generic/centos8"  # Assurez-vous que la box est compatible VMware
 
     config.vm.define "swalterS" do |server|
         server.vm.hostname = "swalterS"
-        server.vm.network "private_network", ip: "192.168.42.110"
-        server.vm.provider "virtualbox" do |v|
-            v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-            v.name = "swalterS"
-            v.memory = 2048
+        server.vm.network "private_network", ip: "192.168.1.110"
+        server.vm.provider "vmware_esxi" do |v|
+            v.esxi_hostname = 'vm.loundor.com'
+            v.esxi_username = 'inception'
+            v.esxi_password = '42.mulhouse'
+            v.esxi_host_port = '443'  # Spécifiez le port ici
+            v.memory = 1024
             v.cpus = 1
+            
         end
         server.vm.provision "shell", inline: <<-SHELL
         sudo dnf -y install dnf-plugins-core
@@ -18,15 +21,28 @@ Vagrant.configure("2") do |config|
         sudo systemctl restart sshd
         curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-iface eth1" sh -s -
         echo $(sudo cat /var/lib/rancher/k3s/server/node-token) > /vagrant/.token
+        
+            # Votre script de provisionnement
         SHELL
+        # Configuration SSH pour utiliser un mot de passe
+        config.ssh.port = 1422  # Assurez-vous que ce port est ouvert et configuré sur la VM
+            config.ssh.username = "inception"  # ou tout autre utilisateur configuré sur la VM
+            config.ssh.password = "42.mulhouse"
+            config.ssh.insert_key = false  # Désactivez l'insertion automatique de clé pour utiliser un mot de passe    
+        
+        
+
     end
 
     config.vm.define "swalterSW" do |worker|
         worker.vm.hostname = "swalterSW"
         worker.vm.network "private_network", ip: "192.168.42.111"
-        worker.vm.provider "virtualbox" do |v|
-            v.name = "swalterSW"
-            v.memory = 2048
+        worker.vm.provider "vmware_esxi" do |v|
+            v.esxi_hostname = 'vm.loundor.com'
+            v.esxi_username = 'inception'
+            v.esxi_password = '42.mulhouse'
+            v.esxi_host_port = '443'  # Spécifiez le port ici
+            v.memory = 1024
             v.cpus = 1
         end
         worker.vm.provision "shell", inline: <<-SHELL
@@ -36,7 +52,14 @@ Vagrant.configure("2") do |config|
         sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
         sudo systemctl restart sshd
         curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_URL=https://192.168.42.110:6443 K3S_TOKEN=$(cat /vagrant/.token) INSTALL_K3S_EXEC="--flannel-iface eth1" sh -s -
+        
+            # Votre script de provisionnement
         SHELL
+        # Configuration SSH pour utiliser un mot de passe
+        config.ssh.port = 1422  # Assurez-vous que ce port est ouvert et configuré sur la VM
+        config.ssh.username = "inception"  # ou tout autre utilisateur configuré sur la VM
+        config.ssh.password = "42.mulhouse"
+        config.ssh.insert_key = false  # Désactivez l'insertion automatique de clé pour utiliser un mot de passe
+    
     end
 end
-
