@@ -1,0 +1,91 @@
+Bien sûr ! Voici une liste des commandes `kubectl` les plus utilisées et leurs fonctions principales. `kubectl` est l'outil en ligne de commande pour interagir avec l'API Kubernetes et gérer les clusters.
+
+### Commandes de Base
+
+1. **`kubectl get`**:
+   - **Description** : Liste une ou plusieurs ressources.
+   - **Usage** : `kubectl get [resources]`
+
+2. **`kubectl describe`**:
+   - **Description** : Affiche des informations détaillées sur une ou plusieurs ressources.
+   - **Usage** : `kubectl describe [resource] [name]`
+
+3. **`kubectl create`**:
+   - **Description** : Crée une ressource à partir d'un fichier ou de stdin.
+   - **Usage** : `kubectl create -f [file.yaml]`
+
+4. **`kubectl apply`**:
+   - **Description** : Applique une configuration à une ressource par nom de fichier ou stdin.
+   - **Usage** : `kubectl apply -f [file.yaml]`
+
+5. **`kubectl delete`**:
+   - **Description** : Supprime des ressources soit par nom de fichier, stdin, ressource et nom, ou par sélection de ressources.
+   - **Usage** : `kubectl delete [resource] [name]`
+
+6. **`kubectl edit`**:
+   - **Description** : Édite et met à jour la définition d'une ressource en utilisant l'éditeur par défaut.
+   - **Usage** : `kubectl edit [resource] [name]`
+
+7. **`kubectl logs`**:
+   - **Description** : Affiche les logs pour un conteneur dans un pod.
+   - **Usage** : `kubectl logs [pod_name]`
+
+8. **`kubectl exec`**:
+   - **Description** : Exécute une commande dans un conteneur.
+   - **Usage** : `kubectl exec [pod_name] -- [command]`
+
+### Commandes de Gestion de Cluster
+
+9. **`kubectl config`**:
+   - **Description** : Modifie les fichiers de configuration de kubectl.
+   - **Usage** : `kubectl config [subcommand]`
+
+10. **`kubectl cluster-info`**:
+    - **Description** : Affiche des informations sur l'état du cluster.
+    - **Usage** : `kubectl cluster-info`
+
+11. **`kubectl top`**:
+    - **Description** : Affiche les ressources utilisées par les pods et les nœuds.
+    - **Usage** : `kubectl top [pod|node]`
+
+12. **`kubectl cordon`**:
+    - **Description** : Marque un nœud pour qu'aucun nouveau pod ne soit planifié dessus.
+    - **Usage** : `kubectl cordon [node_name]`
+
+13. **`kubectl uncordon`**:
+    - **Description** : Marque un nœud pour permettre à nouveau la planification de nouveaux pods.
+    - **Usage** : `kubectl uncordon [node_name]`
+
+14. **`kubectl drain`**:
+    - **Description** : Prépare un nœud pour la maintenance en évacuant les pods en toute sécurité.
+    - **Usage** : `kubectl drain [node_name] --ignore-daemonsets`
+
+15. **`kubectl scale`**:
+    - **Description** : Modifie le nombre de réplicas d'une ressource déployée.
+    - **Usage** : `kubectl scale --replicas=[num] [resource_type]/[resource_name]`
+
+16. **`kubectl rollout`**:
+    - **Description** : Gère le déploiement progressif (rollout) d'une ressource.
+    - **Usage** : `kubectl rollout [subcommand] [resource_type]/[resource_name]`
+
+### Commandes Avancées
+
+17. **`kubectl port-forward`**:
+    - **Description** : Transfère un ou plusieurs ports locaux vers un pod.
+    - **Usage** : `kubectl port-forward [pod_name] [local_port]:[pod_port]`
+
+18. **`kubectl proxy`**:
+    - **Description** : Crée un proxy entre votre poste et le cluster Kubernetes.
+    - **Usage** : `kubectl proxy --port=[port]`
+
+19. **`kubectl attach`**:
+    - **Description** : Attache à un processus en cours d'exécution dans un pod.
+    - **Usage** : `kubectl attach [pod_name] -c [container]`
+
+20. **`kubectl label`**:
+    - **Description** : Ajoute ou met à jour les labels sur les ressources Kubernetes.
+    - **Usage** : `kubectl label [resource_type] [resource_name] [label]`
+
+C
+
+es commandes représentent les fonctions de base et plus avancées de `kubectl`, permettant de gérer efficacement tous les aspects de votre cluster Kubernetes.
