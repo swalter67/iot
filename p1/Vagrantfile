@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
         server.vm.hostname = "swalterS"
         server.vm.network "private_network", ip: "192.168.1.110"
         server.vm.provider "vmware_esxi" do |v|
-            v.esxi_hostname = 'vm.loundor.com'
+            v.esxi_hostname = '192.168.1.11'
             v.esxi_username = 'inception'
             v.esxi_password = '42.mulhouse'
             v.esxi_host_port = '443'  # Spécifiez le port ici
@@ -36,9 +36,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.define "swalterSW" do |worker|
         worker.vm.hostname = "swalterSW"
-        worker.vm.network "private_network", ip: "192.168.42.111"
+        worker.vm.network "private_network", ip: "192.168.1.111"
         worker.vm.provider "vmware_esxi" do |v|
-            v.esxi_hostname = 'vm.loundor.com'
+            v.esxi_hostname = '192.168.1.11'
             v.esxi_username = 'inception'
             v.esxi_password = '42.mulhouse'
             v.esxi_host_port = '443'  # Spécifiez le port ici
