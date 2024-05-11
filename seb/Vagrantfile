@@ -166,7 +166,7 @@ Vagrant.configure('2') do |config|
     #    will NOT automatically be available to your OS.  You will need to
     #    create or modify partitions, LVM and/or filesystems.  NOTE:  This will
     #    extend only, no shrinking.
-    #esxi.guest_boot_disk_size = 50
+    esxi.guest_boot_disk_size = 20
 
     #  OPTIONAL.  Create additional storage for guests.
     #    You can specify an array of upto 14 virtual disk sizes (in GB) that you
@@ -196,7 +196,7 @@ Vagrant.configure('2') do |config|
     #     risky because I don't validate if the specified guest_nic_type is
     #     compatible with your OS version.
     #    *** Invalid setting could cause 'vagrant up' to fail ***
-    #esxi.guest_nic_type = 'vmxnet3'
+    esxi.guest_nic_type = 'vmxnet3'
 
     #  OPTIONAL. specify snapshot options.
     #esxi.guest_snapshot_includememory = 'true'
