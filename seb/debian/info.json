@@ -1,0 +1,7 @@
+{
+	"Author": "Sebastien Tisserand",
+	"Website": "https://loundor.com/",
+	"Artifacts": "https://vagrantcloud.com/loundor/",
+	"Repository": "https://github.com/loundor/",
+	"Description": "Basic virtual machine images, for a esxi operating systems/hypervisors, and ready to serve as base bxoes. Just for test!"
+   }
