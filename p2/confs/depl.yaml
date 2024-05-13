@@ -112,8 +112,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: multi-app-ingress
-  annotations:
-    kubernetes.io/ingress.class: "nginx"  # Ensure NGINX Ingress Controller is installed
+  #annotations:
+  #  kubernetes.io/ingress.class: "nginx"  # normallement pas indicpensable
 spec:
   rules:
   - host: "app1.com"
