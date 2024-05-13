@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-two
+  namespace: app-two
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-two
+    template:
+      metadata:
+        labels:
+          app: app-two
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: storage
+          mountPath: /usr/share/nginx/html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-two
+  namespace: app-two
+spec:
+  selector:
+    app: app-two
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: storage
+  namespace: app-two
+spec:
+  accessModes:
+  - ReadOnce
+  resources:
+    requests:
+      storage: 1Gi
+#---
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: storage
+#  namespace: app-two
+#spec:
+#  accessModes:
+#  - ReadOnce
+#  capacity:
+#    storage: 1Gi
+#  hostPath:
+#    path: ./scripts/data/app-two
