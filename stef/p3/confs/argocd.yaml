@@ -6,13 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/swalter67/iot/stef/p3/confs
-    targetRevision: HEAD
-    path: dev
+    repoURL: https://github.com/swalter67/iot  # URL du dépôt Git
+    targetRevision: HEAD  # Pointe vers la dernière version de la branche par défaut
+    path: stef/p3/confs  # Chemin spécifique où se trouvent les fichiers de configuration Kubernetes
   destination:
-    server: https://kubernetes.default.svc
-    namespace: dev
+    server: https://kubernetes.default.svc  # Cluster Kubernetes cible
+    namespace: dev  # Namespace cible où l'application sera déployée
   syncPolicy:
     automated:
-      selfHeal: true
-      prune: true
+      selfHeal: true  # Rétablit automatiquement l'état déclaré en cas de modification manuelle
+      prune: true     # Supprime les ressources qui ne sont plus présentes dans le dépôt Git
