@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/swalter67/iot
+    repoURL: https://github.com/swalter67/iot/stef/p3/confs
     targetRevision: HEAD
     path: dev
   destination:
