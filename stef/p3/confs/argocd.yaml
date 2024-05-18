@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://hub.docker.com/r/wil42/playground
+    repoURL: 
     targetRevision: HEAD
     path: dev
   destination:
