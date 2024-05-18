@@ -53,4 +53,13 @@ kubectl apply -f $CONFIG_DIR/argocd.yaml
 kubectl create namespace dev
 kubectl apply -f $CONFIG_DIR/will_app.yaml -n dev
 kubectl apply -f $CONFIG_DIR/ingress.yaml -n dev
+
+
+
+#probleme de conetxt
+
+mkdir -p /home/walter/.kube
+k3d kubeconfig get mycluster > /home/walter/.kube/config
+kubectl config use-context k3d-mycluster
+
 echo "Installation terminée. ArgoCD et k3d sont prêts à l'emploi , normallement!"

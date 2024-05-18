@@ -89,3 +89,9 @@ argocd            Active   10m
 dev               Active   10m
 
 kubectl get pods -n dev
+
+
+PROBLEME le port 8888 deja pris donc kubectl port-forward svc/wiilapp 10232:3200 -n dev c est un peu null
+
+curl http://localhost:10232
+{"status":"ok", "message": "v1"}(base)   enfin ca marche mais j ai du refaire la manip .kube
