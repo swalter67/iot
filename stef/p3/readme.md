@@ -96,6 +96,8 @@ curl http://localhost:10232
 
 
 
+pour argocd idem kubectl port-forward svc/argocd-server -n argocd 8081:443
+
 
 k3d cluster delete mycluster
 
@@ -109,3 +111,4 @@ user : admin
 mnot de passe
 argocd admin initial-password -n argocd
 
+ATTENTION le repo doit etre en public, sinon gerer les cle pour argocd !!!!! ca fait deux jours de galere pour se connecter a argocd et le faire fonctionner 
