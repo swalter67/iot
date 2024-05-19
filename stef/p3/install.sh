@@ -43,11 +43,8 @@ k3d cluster create  mycluster --port 8080:80@loadbalancer --port 8888:8888@loadb
 
 
 
-# Installation de ArgoCD
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-kubectl apply -f $CONFIG_DIR/argocd.yaml
-#
+
+
 
 #dev
 kubectl create namespace dev
@@ -55,7 +52,10 @@ kubectl apply -f $CONFIG_DIR/will_app.yaml -n dev
 kubectl apply -f $CONFIG_DIR/ingress.yaml -n dev
 
 
-
+# Installation de ArgoCD
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -f $CONFIG_DIR/argocd.yaml
 #probleme de conetxt
 
 mkdir -p /home/walter/.kube
