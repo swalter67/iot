@@ -13,7 +13,8 @@ spec:
     server: https://kubernetes.default.svc  # Cluster Kubernetes cible
     namespace: dev  # Namespace cible où l'application sera déployée
   syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
     automated:
-      enable: true
       selfHeal: true  # Rétablit automatiquement l'état déclaré en cas de modification manuelle
       prune: true     # Supprime les ressources qui ne sont plus présentes dans le dépôt Git
