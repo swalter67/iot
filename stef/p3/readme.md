@@ -112,3 +112,8 @@ mnot de passe
 argocd admin initial-password -n argocd
 
 ATTENTION le repo doit etre en public, sinon gerer les cle pour argocd !!!!! ca fait deux jours de galere pour se connecter a argocd et le faire fonctionner 
+
+changement de version dasn wiil_app.yaml puis git add, commit, push -> dans l appli web argocd refresh -> creation d un nouveau pod qui remplce l ancien verif avec kubectl get pods -n dev
+
+
+Reste a faire : je vais modifier le repo, le passer en priver et gerer la connection en parametrant argocd
