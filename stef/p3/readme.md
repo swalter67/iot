@@ -100,3 +100,14 @@ curl http://localhost:10232
 
 
 k3d cluster delete mycluster
+
+
+argocd web interface : 
+
+kubectl port-forward svc/argocd-server -n argocd 8081:443
+localhost:8081
+
+user : admin
+mnot de passe
+kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o jsonpath='{.items[*].metadata.name}'
+
