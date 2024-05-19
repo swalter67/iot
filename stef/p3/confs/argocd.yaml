@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/swalter67/iot  # URL du dépôt Git
-    targetRevision: MAIN  # Pointe vers la dernière version de la branche par défaut
+    targetRevision: main # Pointe vers la dernière version de la branche par défaut
     path: stef/p3/confs  # Chemin spécifique où se trouvent les fichiers de configuration Kubernetes
   destination:
     server: https://kubernetes.default.svc  # Cluster Kubernetes cible
