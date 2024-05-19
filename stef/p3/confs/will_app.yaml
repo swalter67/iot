@@ -7,7 +7,7 @@ spec:
     app: wiilapp
   ports:
     - protocol: TCP
-      port: 3200
+      port: 8888
       targetPort: 8888
 ---
 apiVersion: apps/v1
@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
       - name: wil42-wiilapp
-        image: wil42/playground:v2
+        image: wil42/playground:v1
         ports:
         - containerPort: 8888

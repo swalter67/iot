@@ -13,4 +13,4 @@ spec:
           service:
             name: wiilapp
             port:
-              number: 8888
+              number: 3200

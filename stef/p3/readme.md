@@ -86,9 +86,7 @@ kube-public       Active   10m
 kube-node-lease   Active   10m
 default           Active   10m
 argocd            Active   10m
-dev               Active   10m
-
-kubectl get pods -n dev
+dev               Active   
 
 
 PROBLEME le port 8888 deja pris donc kubectl port-forward svc/wiilapp 10232:3200 -n dev c est un peu null
@@ -109,5 +107,5 @@ localhost:8081
 
 user : admin
 mnot de passe
-kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o jsonpath='{.items[*].metadata.name}'
+argocd admin initial-password -n argocd
 
