@@ -89,7 +89,7 @@ argocd            Active   10m
 dev               Active   
 
 
-PROBLEME le port 8888 deja pris donc kubectl port-forward svc/wiilapp 10232:3200 -n dev c est un peu null
+PROBLEME le port 8888 deja pris donc kubectl port-forward svc/wiilapp 10232:8888 -n dev c est un peu null
 
 curl http://localhost:10232
 {"status":"ok", "message": "v1"}(base)   enfin ca marche mais j ai du refaire la manip .kube
@@ -108,8 +108,8 @@ kubectl port-forward svc/argocd-server -n argocd 8081:443
 localhost:8081
 
 user : admin
-mnot de passe
-argocd admin initial-password -n argocd
+mnot de passe :
+    argocd admin initial-password -n argocd
 
 ATTENTION le repo doit etre en public, sinon gerer les cle pour argocd !!!!! ca fait deux jours de galere pour se connecter a argocd et le faire fonctionner 
 
