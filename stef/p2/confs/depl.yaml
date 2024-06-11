@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app-1
-        image: paulbouwer/hello-kubernetes:1.9
+        image: paulbouwer/hello-kubernetes:1.10.1
         env:
           - name: MESSAGE
             value: "Hello from APP1"
@@ -32,7 +32,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 
 ---
 apiVersion: apps/v1
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: app-2
-        image: paulbouwer/hello-kubernetes:1.9
+        image: paulbouwer/hello-kubernetes:1.10.1
         env:
           - name: MESSAGE
             value: "Hello from APP2"
@@ -69,7 +69,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 
 ---
 apiVersion: apps/v1
@@ -88,7 +88,7 @@ spec:
     spec:
       containers:
       - name: app-3
-        image: paulbouwer/hello-kubernetes:1.9
+        image: paulbouwer/hello-kubernetes:1.10.1
         env:
           - name: MESSAGE
             value: "Hello from APP3"
@@ -106,7 +106,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -114,7 +114,7 @@ kind: Ingress
 metadata:
   name: multi-app-ingress
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
   - host: "app1.com"
     http:
