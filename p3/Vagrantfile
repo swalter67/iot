@@ -1,0 +1,91 @@
+Vagrant.configure('2') do |config|
+	config.vm.box = 'loundor/debian'
+	config.vm.synced_folder('.', '/vagrant', type: 'nfs', disabled: false, nfs_version: 4, nfs_udp: false)
+  
+	#config.vm.network 'private_network', ip: '192.168.10.170', netmask: '255.255.255.0'
+	#config.vm.network 'private_network', ip: '192.168.1.171'
+	#config.vm.network 'public_network', ip: '192.168.12.170'
+	config.vm.define 'Master', primary: true do |master|
+	  master.vm.network 'private_network', ip: '192.168.56.110'
+	  master.vm.hostname = 'stisseraS'
+		
+	  master.vm.provider :vmware_esxi do |esxi|
+		esxi.esxi_hostname = 'vm.loundor.com'
+		esxi.esxi_username = 'inception'
+		esxi.esxi_password = '42.mulhouse'
+		#esxi.esxi_password = 'prompt:'
+		esxi.esxi_hostport = 1422
+		esxi.esxi_virtual_network = ['PC Network','Inception']
+		esxi.esxi_disk_store = 'OS'
+		
+		#  OPTIONAL.  Resource Pool
+		#    If unspecified, the default is to create VMs in the 'root'.  You can
+		#    specify a resource pool here to partition memory and cpu usage away
+		#    from other systems on your esxi host.  The resource pool must
+		#    already exist and have the proper permissions set.
+		#
+		#     This plugin will NOT create a Resource pool for you!
+		#esxi.esxi_resource_pool = '/Vagrant'
+		
+		#  Optional. Specify a VM to clone instead of uploading a box.
+		#    Vagrant can use any stopped VM as the source 'box'.   The VM must be
+		#    registered, stopped and must have the vagrant insecure ssh key installed.
+		#    If the VM is stored in a resource pool, it must be specified.  If this
+		#    option is specified, config.vm.box should be set to a dummy box.
+		#    See wiki: https://github.com/josenk/vagrant-vmware-esxi/wiki/How-to-clone_from_vm
+		#esxi.clone_from_vm = 'resource_pool/source_vm'
+		
+		#  OPTIONAL.  Guest VM name to use.
+		#    The Default will be automatically generated.  It will be based on
+		#    the guest_name_prefix (see below), your hostname & username and path.
+		#    Otherwise you can set a fixed guest VM name here.
+		esxi.guest_name = 'Master'
+		esxi.guest_memsize = '2048'
+		esxi.guest_numvcpus = '1'
+		
+		#  OPTIONAL. Specify a disk type.
+		#    If unspecified, it will be set to 'thin'.  Otherwise, you can set to
+		#    'thin', 'thick', or 'eagerzeroedthick'
+		#esxi.guest_disk_type = 'thick'
+		
+		#esxi.guest_boot_disk_size = '20'
+		#esxi.guest_storage = [ 10, 20, { size: 30, datastore: 'datastore1' } ]
+		#esxi.guest_mac_address = ['00:50:56:aa:bb:cc', '00:50:56:01:01:01','00:50:56:02:02:02','00:50:56:BE:AF:01' ]
+		esxi.guest_nic_type = 'vmxnet3'
+		esxi.guest_guestos = 'other3xlinux-64'
+		#esxi.guest_virtualhw_version = '9'
+		#esxi.guest_autostart = 'false'
+		
+		#  RISKY. guest_custom_vmx_settings
+		#    You can specify an array of custom vmx settings to add (or to override
+		#    existing settings).   ****  I don't do any validation, so if you
+		#    make any errors, it will not be caught ***   This is the place you would
+		#    add any special settings you need in your vmx.  (Like adding a USB, DVD
+		#    CPU settings, etc...).
+		#    ex vhv.enable = 'TRUE' will be appended, floppy0.presend = 'TRUE' will be modified
+		#esxi.guest_custom_vmx_settings = [['vhv.enable','TRUE'], ['floppy0.present','TRUE']]
+		
+		#  OPTIONAL. local_lax
+		#    If unspecified, the ovftool option --lax is disabled.   If you are
+		#    importing ovf boxes that generate errors, you may want to enable local_lax
+		#    to convert the errors to warning. (then the import could succeed)
+		#esxi.local_lax = 'true'
+		
+		#  OPTIONAL.  Guest IP Caching
+		#    If unspecified, guest IP caching will be enabled.  This will result in
+		#    faster vagrant command executution.   However, vagrant could get incorrect
+		#    information if an IP changes on the guest.   Set this 'False' to disable
+		#    IP caching.
+		#esxi.local_use_ip_cache = 'False'
+		#esxi.local_allow_overwrite = 'True'
+		#esxi.local_failonwarning = 'True'
+		esxi.debug = 'false'
+	  end
+	  master.vm.provision "docker"
+	  master.vm.provision "shell", inline: "sudo apt-get update"
+	  master.vm.provision "shell", inline: "sudo apt-get install -y xfce4 falkon"
+	  master.vm.provision "shell", inline: "sudo sed -i 's/allowed_users=.*$/allowed_users=anybody/' /etc/X11/Xwrapper.config"
+
+	end
+  end
+  
