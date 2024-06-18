@@ -10,7 +10,7 @@ RED='\033[0;31m'
 PURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 
- Vérification des privilèges root
+#Vérification des privilèges root
 #if [ "$(id -u)" != "0" ]; then
 #    echo "Ce script doit être exécuté avec les droits superutilisateur."
 #    exit 1
@@ -94,8 +94,8 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl config set-context --current --namespace=argocd
 
 # Déploiement de l'application dans le namespace 'dev'
-kubectl create namespace dev
-kubectl apply -f $CONFIG_DIR/will_app.yaml
+#kubectl create namespace dev
+#kubectl apply -f $CONFIG_DIR/will_app.yaml
 kubectl apply -f $CONFIG_DIR/playground.yaml
 
 check_secret_exists() {
@@ -115,4 +115,4 @@ echo -e "\nLe mot de passe par défaut pour l'interface web d'ArgoCD est :"$PURP
 echo -e "Utilisez la commande suivante pour accéder à l'interface web d'ArgoCD :" $PURPLE
 echo -e "kubectl port-forward svc/argocd-server -n argocd 8081:443" $NC
 echo "Installation terminée. ArgoCD et k3d sont prêts à l'emploi."
-echo $PASSWORD_ARGO > argopassword.txt
+echo $PASSWORD_ARGO >> argopassword.txt
