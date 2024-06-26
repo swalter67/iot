@@ -6,7 +6,8 @@ Vagrant.configure('2') do |config|
 	config.vm.provider :vmware_esxi do |esxi|
 		esxi.esxi_hostname = 'vm.loundor.com'
 		esxi.esxi_username = 'inception'
-		esxi.esxi_password = 'prompt:'
+		#esxi.esxi_password = 'prompt:'
+                esxi.esxi_password = '42.mulhouse'
 		esxi.esxi_hostport = 1422
 		esxi.esxi_virtual_network = ['PC Network','Inception']
 		esxi.esxi_disk_store = 'OS'

@@ -78,7 +78,8 @@ command -v k3d >/dev/null 2>&1 || { echo -e $RED"k3d n'a pas été installé cor
 
 # Création d'un cluster k3d
 echo -e $YELLOW"Création d'un cluster k3d." $NC
-k3d cluster create mycluster --port 8080:80@loadbalancer --port 8443:443@loadbalancer --port 8888:8888@loadbalancer --k3s-arg "--disable=traefik@server:0" --verbose
+k3d cluster create mycluster --port 8080:80@loadbalancer --port 8443:443@loadbalancer --k3s-arg "--disable=traefik@server:0" --verbose
+#k3d cluster create mycluster --port 8080:80@loadbalancer --port 8443:443@loadbalancer --port 8888:8888@loadbalancer --k3s-arg "--disable=traefik@server:0" --verbose
 
 # Configuration du contexte kubectl
 echo -e $YELLOW"Configuration du contexte kubectl." $NC
